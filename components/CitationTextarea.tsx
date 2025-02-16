@@ -41,7 +41,14 @@ export default function CitationTextarea() {
   const streakStore = useStreakStore();
   const completedStore = useCompletedStore();
 
-  const isCompleted = new Date(completedStore.last_completed).getDate() == new Date().getDate();
+  const lastCompletedEST = new Date(completedStore.last_completed).toLocaleString("en-US", {
+    timeZone: "America/New_York"
+  });
+  const nowEST = new Date().toLocaleString("en-US", {
+    timeZone: "America/New_York"
+  });
+
+  const isCompleted = new Date(lastCompletedEST).toDateString() === new Date(nowEST).toDateString();
 
   async function onSubmit(data: z.infer<typeof citationSchema>) {
     setLoading(true);
