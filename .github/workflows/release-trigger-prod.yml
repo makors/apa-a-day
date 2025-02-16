@@ -1,12 +1,9 @@
 name: Deploy to Trigger.dev (prod)
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
