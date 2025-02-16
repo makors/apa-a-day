@@ -41,6 +41,8 @@ export default function CitationTextarea() {
   const streakStore = useStreakStore();
   const completedStore = useCompletedStore();
 
+  const isCompleted = new Date(completedStore.last_completed).getDate() == new Date().getDate();
+
   async function onSubmit(data: z.infer<typeof citationSchema>) {
     setLoading(true);
     const citation = await getAPAFormatted();
@@ -126,7 +128,7 @@ export default function CitationTextarea() {
           render={({ field }) => (
             <FormItem>
               <FormControl className="mt-4">
-                <Textarea disabled={completedStore.last_completed.getDate() === new Date().getDate()} placeholder={completedStore.last_completed.getDate() === new Date().getDate() ? "You've already solved today's riddle" : "Enter your citation here"} {...field} className="resize-none h-44 md:h-40 text-base lg:text-lg" />
+                <Textarea disabled={isLoading || isCompleted} placeholder={isCompleted ? "You've already completed today's citation" : "Enter your citation here"} {...field} className="resize-none h-44 md:h-40 text-base lg:text-lg" />
               </FormControl>
               <FormDescription className="text-sm lg:text-base pt-1">
                 Use *italics* for italics. Match case of the original citation.
@@ -135,7 +137,7 @@ export default function CitationTextarea() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full text-base" size="lg" disabled={isLoading || completedStore.last_completed.getDate() === new Date().getDate()}>Submit {isLoading ? <Loader2 className="size-6 animate-spin" /> : null}</Button>
+        <Button type="submit" className="w-full text-base" size="lg" disabled={isLoading || isCompleted}>Submit {isLoading ? <Loader2 className="size-6 animate-spin" /> : null}</Button>
       </form>
     </Form>
   );

@@ -12,6 +12,7 @@ interface StreakState {
 interface CompletedState {
     last_completed: Date;
     setLastCompleted: (date: Date) => void;
+    setCompletedDefault: () => void;
 }
 
 export const useStreakStore = create<StreakState>()(
@@ -32,6 +33,7 @@ export const useCompletedStore = create<CompletedState>()(
         (set) => ({
             last_completed: new Date("1970-01-01"),
             setLastCompleted: (date: Date) => set({ last_completed: date }),
+            setCompletedDefault: () => set({ last_completed: new Date("1970-01-01") }),
         }),
         {
             name: 'completed-storage',
