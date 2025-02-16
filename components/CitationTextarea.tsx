@@ -68,7 +68,7 @@ export default function CitationTextarea() {
       <CardContent className="space-y-4 pb-2">
         {citation === form.getValues("citation") ? (
           <span>
-            Keep it up! You're doing great! 👑
+            Keep it up! You&apos;re doing great! 👑
           </span>
         ) : (
           <span>

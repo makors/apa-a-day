@@ -38,7 +38,7 @@ export default function RootLayout({
           <div className="flex flex-col items-center justify-center md:pb-3">
             <h1 className="text-4xl font-semibold">APA-A-Day</h1>
             <h3 className="text-base italic text-gray-400">
-              "Cite it right, sleep at night!"
+              &quot;Cite it right, sleep at night!&quot;
             </h3>
           </div>
           <div className="max-w-lg mx-auto">
