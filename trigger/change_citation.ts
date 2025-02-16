@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { Redis } from "@upstash/redis";
 import { logger, schedules } from "@trigger.dev/sdk/v3";
+import { nanoid } from 'nanoid';
 
 interface CitationInfo {
   authors: string[];
@@ -37,13 +38,28 @@ export const changeCitation = schedules.task({
       }
 
       openAlexData = await openAlexReq.json();
-      logger.info("checking work", { language: openAlexData.language });
+      const titleWordCount = openAlexData.display_name?.split(/\s+/).length ?? 0;
+      logger.info("checking work", { 
+        language: openAlexData.language,
+        type: openAlexData.type,
+        titleWordCount,
+        doi: openAlexData.doi
+      });
 
-      if (openAlexData.language !== "en") {
+      if (
+        openAlexData.language !== "en" || 
+        openAlexData.type !== "article" ||
+        titleWordCount > 12
+      ) {
         await new Promise(resolve => setTimeout(resolve, 5000));
       }
 
-    } while (openAlexData.language !== "en" && count++ < 10);
+    } while (
+      (openAlexData.language !== "en" || 
+       openAlexData.type !== "article" ||
+       (openAlexData.display_name?.split(/\s+/).length ?? 0) > 12) && 
+      count++ < 10
+    );
 
     if (openAlexData == null) {
       throw new Error("no matching work found");
@@ -74,7 +90,7 @@ export const changeCitation = schedules.task({
       issue: openAlexData.biblio.issue ?? "8",
       pageStart: openAlexData.biblio.first_page ?? "50",
       pageEnd: openAlexData.biblio.last_page ?? "55",
-      doi: openAlexData.doi,
+      doi: openAlexData.doi?.length > 30 ? `https://doi.org/${nanoid(10)}` : openAlexData.doi,
     };
 
     // update the citation in redis
