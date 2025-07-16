@@ -1,7 +1,16 @@
 
+import dynamic from "next/dynamic"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CitationInfo } from "./CitationInfo"
-import CitationTextarea from "./CitationTextarea"
+
+// Dynamically import the heavy CitationTextarea component
+const CitationTextarea = dynamic(() => import("./CitationTextarea"), {
+  loading: () => (
+    <div className="w-full h-64 flex items-center justify-center">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"></div>
+    </div>
+  ),
+});
 
 export default function CitationTabs() {
     return (

@@ -10,9 +10,25 @@ import {
 import { Label } from "@/components/ui/label"
 import { getCitation } from "@/lib/actions/get_citation";
 
-export async function CitationInfo() {
+// Memoized author component to prevent unnecessary re-renders
+const AuthorField = React.memo(({ author, index }: { author: string; index: number }) => (
+    <div className="flex flex-col col-span-3 gap-y-1 md:gap-y-2">
+        <Label className="text-gray-400">Author #{index + 1}</Label>
+        <p>{author}</p>
+    </div>
+));
+
+AuthorField.displayName = 'AuthorField';
+
+export const CitationInfo = React.memo(async function CitationInfo() {
     // faker is at least a megabyte, yikes!
     const citation = await getCitation();
+
+    // Memoize the authors array to prevent unnecessary re-renders
+    const authorsToShow = React.useMemo(() => 
+        citation.authors.slice(0, 3), 
+        [citation.authors]
+    );
 
     return (
         <Card className="w-full">
@@ -23,16 +39,9 @@ export async function CitationInfo() {
                 </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-y-3 grid-cols-6 md:grid-cols-10 gap-x-4" suppressHydrationWarning>
-                {citation.authors.map((author, index) => {
-                    if (index > 2) return null;
-                    
-                    return (
-                        <div className="flex flex-col col-span-3 gap-y-1 md:gap-y-2" key={index}>
-                            <Label className="text-gray-400">Author #{index + 1}</Label>
-                            <p>{author}</p>
-                        </div>
-                    )
-                })}
+                {authorsToShow.map((author, index) => (
+                    <AuthorField key={index} author={author} index={index} />
+                ))}
 
                 <div className="flex flex-col gap-y-1 md:gap-y-2 col-span-2">
                     <Label className="text-gray-400">Pages</Label>
@@ -71,4 +80,4 @@ export async function CitationInfo() {
             </CardContent>
         </Card>
     )
-}
+});
