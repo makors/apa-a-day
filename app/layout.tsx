@@ -44,7 +44,7 @@ export default function RootLayout({
           
           <div className="flex flex-col items-center justify-center md:pb-6 mb-8">
             <div className="text-center space-y-4">
-              <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-orange-400 via-red-400 to-orange-500 bg-clip-text text-transparent animate-pulse">
+              <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-orange-300 bg-clip-text text-transparent">
                 APA-A-Day
               </h1>
               <div className="relative">

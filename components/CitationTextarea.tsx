@@ -95,7 +95,7 @@ export default function CitationTextarea() {
               <XCircle className="w-6 h-6 text-red-400" />
             )}
           </div>
-          <CardTitle className={`text-xl md:text-2xl ${isCorrect ? 'bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent' : 'bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent'}`}>
+          <CardTitle className={`text-xl md:text-2xl ${isCorrect ? 'bg-gradient-to-r from-gray-100 via-gray-300 to-green-300 bg-clip-text text-transparent' : 'bg-gradient-to-r from-gray-100 via-gray-300 to-red-300 bg-clip-text text-transparent'}`}>
             {isCorrect 
               ? successMessages[Math.floor(Math.random() * successMessages.length)]
               : errorMessages[Math.floor(Math.random() * errorMessages.length)]

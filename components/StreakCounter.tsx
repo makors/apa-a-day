@@ -75,7 +75,7 @@ export default function StreakCounter() {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="w-full max-w-md bg-gradient-to-br from-gray-900 to-gray-800 border-orange-500/20 shadow-2xl">
           <DialogHeader className="text-center pb-4">
-            <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+            <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-400 bg-clip-text text-transparent">
               Your Streak Stats
             </DialogTitle>
           </DialogHeader>

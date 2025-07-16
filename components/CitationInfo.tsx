@@ -23,7 +23,7 @@ export async function CitationInfo() {
                         <BookOpen className="w-6 h-6 text-orange-400" />
                     </div>
                     <div>
-                        <CardTitle className="text-xl md:text-2xl bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                        <CardTitle className="text-xl md:text-2xl bg-gradient-to-r from-gray-100 via-gray-300 to-gray-400 bg-clip-text text-transparent">
                             Citation Info
                         </CardTitle>
                         <CardDescription className="hidden lg:block lg:text-base text-gray-300 mt-1">
