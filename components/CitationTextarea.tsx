@@ -69,7 +69,7 @@ export default function CitationTextarea() {
   const successMessages = [
     "Perfect Citation! 🎯", 
     "Nailed it! 🎉", 
-    "You're a Citation Pro! 🌟", 
+    "You&apos;re a Citation Pro! 🌟", 
     "Flawless Work! 💫", 
     "Citation Perfection! 🏆",
     "Absolutely Brilliant! ✨",
@@ -78,7 +78,7 @@ export default function CitationTextarea() {
   const errorMessages = [
     "Incorrect! ❌", 
     "Not Quite! 😕", 
-    "That's Not It! 🤔", 
+    "That&apos;s Not It! 🤔", 
     "Wrong Format! 📝",
     "Almost There! 🔄",
     "Try Again Tomorrow! 📚"
@@ -166,7 +166,7 @@ export default function CitationTextarea() {
       <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-lg">
         <Target className="w-5 h-5 text-orange-400" />
         <div>
-          <h3 className="font-semibold text-orange-300">Today's Challenge</h3>
+          <h3 className="font-semibold text-orange-300">Today&apos;s Challenge</h3>
           <p className="text-sm text-gray-300">Format the citation in APA style. Pay attention to punctuation, spacing, and italics!</p>
         </div>
       </div>
@@ -182,7 +182,7 @@ export default function CitationTextarea() {
                   <div className="relative">
                     <Textarea 
                       disabled={isLoading || isCompleted} 
-                      placeholder={isCompleted ? "You've already completed today's citation" : "Enter your citation here"} 
+                      placeholder={isCompleted ? "You&apos;ve already completed today&apos;s citation" : "Enter your citation here"} 
                       {...field} 
                       className={`resize-none h-44 md:h-40 text-base lg:text-lg bg-gray-800/50 border-gray-700/50 focus:border-orange-500/50 focus:ring-orange-500/20 transition-all duration-200 ${isCompleted ? 'opacity-50' : 'hover:border-gray-600/50'}`} 
                     />

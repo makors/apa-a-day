@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useStreakStore, useCompletedStore } from "@/app/_stores/streak";
 import { Flame, Trophy, Star, Target, Zap, Crown } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
@@ -122,11 +121,11 @@ export default function StreakCounter() {
 
             {/* Today's Status */}
             <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
-              <h4 className="font-semibold text-white mb-2">Today's Progress</h4>
+              <h4 className="font-semibold text-white mb-2">Today&apos;s Progress</h4>
               <div className="flex items-center gap-2">
                 <div className={`w-3 h-3 rounded-full ${isCompletedToday ? 'bg-green-500 animate-pulse' : 'bg-gray-500'}`}></div>
                 <span className="text-sm text-gray-300">
-                  {isCompletedToday ? 'Completed today\'s citation! 🎉' : 'Citation not completed yet'}
+                  {isCompletedToday ? 'Completed today&apos;s citation! 🎉' : 'Citation not completed yet'}
                 </span>
               </div>
             </div>
